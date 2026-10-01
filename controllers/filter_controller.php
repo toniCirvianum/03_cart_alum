@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $categoryOk = false;
         }
 
-        if ($price != '' && $product['price'] <= $price) {
+        if ($price != '' && $product['price'] >= $price) {
             $priceOk = false;
         }
 

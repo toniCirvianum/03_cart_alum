@@ -1,7 +1,5 @@
 <?php
 
-include("../functions/user_functions.php");
-
 // userLogged();
 
 $text = [];
@@ -78,6 +76,13 @@ $categories = $_SESSION['categories'] ?? [];
 
     </div>
     <!-- Missatge de producte afegit al carret -->
+    <?php if (isset($_GET['productInCart']) && $_GET['productInCart'] = true) : ?>
+        <div class="alert alert-success text-center mx-auto w-50" role="alert">
+            <?= $text['productInCart']; ?>
+            <?php unset($_GET['productInCart']); ?>
+        </div>
+    <?php endif; ?>
+
 
     <div class="row g-4 mb-4">
         <!-- Comença la llista de productes -->
@@ -107,12 +112,18 @@ $categories = $_SESSION['categories'] ?? [];
                         </p>
                         <!-- Boto per afegir amb el mètode GET -->
                         <div class="d-flex justify-content-center">
-                            <a
-                                href="#"
+                            <!-- <a
+                                href="../controllers/add_cart_controller.php?id=<?= $product['id'] ?>"
                                 class="btn btn-primary">
                                 <i class="bi bi-cart-plus"></i>
                                 <?= $text['add_to_cart'] ?>
-                            </a>
+                            </a> -->
+                            <form action="../controllers/add_cart_controller.php" method="POST">
+                                <input type="hidden" name='id' value="<?= $product['id'] ?>">
+                                <input class="btn btn-primary" type="submit" value="afegir al carret">
+
+
+                            </form>
 
                         </div>
 
